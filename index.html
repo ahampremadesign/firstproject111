@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hebamme Hannah-Marie in Dresden &amp; Umgebung</title>
+  <meta name="description" content="Hebamme Hannah-Marie in Dresden und Umgebung: liebevolle, kontinuierliche und individuelle Betreuung von der Schwangerschaft bis ins Wochenbett.">
+  <style>
+    /* Schriften selbst hosten (DSGVO-freundlich): Dateien in den Ordner "fonts" legen.
+       Ohne die Dateien greifen die Ersatzschriften. */
+    @font-face { font-family: "Inter"; src: url("fonts/inter.woff2") format("woff2"), url("fonts/inter.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Caveat"; src: url("fonts/caveat.woff2") format("woff2"), url("fonts/caveat.ttf") format("truetype"); font-weight: 400 700; font-display: swap; }
+
+    :root {
+      --maroon: #5a0e08;
+      --sage: #a9b88f;
+      --sage-light: #dce4d3;
+      --brown: #5f4f47;
+      --cream: #f8f4ee;
+      --ink: #231a16;
+
+      --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --script: "Caveat", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--cream); line-height: 1.55; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: relative;
+      z-index: 10;
+      background: var(--maroon);
+      color: #fff;
+    }
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 1.1rem clamp(1rem, 4vw, 3rem);
+    }
+    .logo { display: block; width: 4.5rem; color: #c8261c; }
+    .logo svg { width: 100%; height: auto; display: block; }
+
+    .menu { list-style: none; display: flex; align-items: center; gap: 2.5rem; margin: 0; padding: 0; font-size: 0.9rem; }
+    .menu a, .menu button {
+      display: block; margin: 0;
+      font: inherit; line-height: 1.5; color: #fff; background: none; border: 0; padding: 0.4rem 0;
+      cursor: pointer; text-decoration: none; letter-spacing: 0.02em;
+    }
+    .menu a:hover, .menu button:hover { color: var(--sage); }
+
+    .has-sub { position: relative; }
+    .sub {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 15.5rem;
+      margin: 0;
+      padding: 0.5rem 0;
+      list-style: none;
+      background: var(--sage-light);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .sub li:first-child { background: var(--sage); }
+    .sub a { display: block; padding: 0.55rem 1.1rem; color: var(--ink); font-size: 0.85rem; }
+    .sub a:hover { color: var(--maroon); background: rgba(255,255,255,0.45); }
+    .has-sub.open .sub, .has-sub:hover .sub, .has-sub:focus-within .sub { display: block; }
+
+    .burger {
+      display: none; background: none; border: 1px solid rgba(255,255,255,0.6);
+      color: #fff; padding: 0.55rem 0.9rem; font: inherit; font-size: 0.85rem; cursor: pointer;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: clamp(26rem, 62vh, 40rem);
+      padding: 5rem clamp(1rem, 4vw, 3rem) 4rem;
+      text-align: center;
+      color: #fff;
+      background-color: #4a352c;
+      /* Fotos in den Ordner "images" legen; ohne Fotos bleibt ein warmer Braunton */
+      background-image:
+        linear-gradient(rgba(35, 18, 12, 0.5), rgba(35, 18, 12, 0.5)),
+        url("images/hero-links.jpg"),
+        url("images/hero-rechts.jpg");
+      background-size: cover, 50% 100%, 50% 100%;
+      background-position: center, left center, right center;
+      background-repeat: no-repeat;
+    }
+    .hero-inner { max-width: 40rem; }
+    .hero h1 {
+      margin: 0 0 1.25rem;
+      font-family: var(--script);
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.1;
+    }
+    .hero p { margin: 0 auto 2rem; max-width: 30rem; font-size: clamp(0.95rem, 1.6vw, 1.05rem); }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2.4rem;
+      border-radius: 999px;
+      background: var(--sage);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .btn:hover { background: var(--sage-light); }
+
+    /* ---------- Handy ---------- */
+    @media (max-width: 760px) {
+      .burger { display: block; }
+      .logo { width: 3.6rem; }
+      .menu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 0 clamp(1rem, 4vw, 3rem) 1rem;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+      .site-header.open .menu { display: flex; }
+      .bar { flex-wrap: wrap; }
+      .menu { width: 100%; max-width: 80rem; margin: 0 auto; }
+      .menu > li > a, .menu > li > button { display: block; width: 100%; text-align: left; padding: 0.8rem 0; }
+      .sub { position: static; display: none; box-shadow: none; margin-bottom: 0.5rem; }
+      .has-sub:hover .sub { display: none; }
+      .has-sub.open .sub { display: block; }
+      .hero {
+        background-size: cover, 100% 50%, 100% 50%;
+        background-position: center, center top, center bottom;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="header">
+    <div class="bar">
+      <a class="logo" href="#top" aria-label="Hebamme Hannah-Marie, zur Startseite">
+        <svg viewBox="10 8 48 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+          <path d="M32 30a4 4 0 0 1 4 4a8 8 0 0 1-8 8a12 12 0 0 1-12-12a16 16 0 0 1 16-16a20 20 0 0 1 20 20"/>
+        </svg>
+      </a>
+
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menü</button>
+
+      <ul class="menu" id="menu">
+        <li><a href="#ueber-mich">Über mich</a></li>
+        <li class="has-sub">
+          <button type="button" aria-expanded="false" aria-haspopup="true">Meine Leistungen</button>
+          <ul class="sub">
+            <li><a href="#vorsorgeuntersuchung">Vorsorgeuntersuchungen</a></li>
+            <li><a href="#geburtsvorbereitung">Geburtsvorbereitungskurse</a></li>
+            <li><a href="#wehenbegleitung">Wehenbegleitung</a></li>
+            <li><a href="#rueckbildung">Rückbildungskurse</a></li>
+          </ul>
+        </li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-titel">
+      <div class="hero-inner">
+        <h1 id="hero-titel">Hebamme Hannah-Marie<br>in Dresden &amp; Umgebung</h1>
+        <p>Ich biete liebevolle, kontinuierliche und individuelle Betreuung von der Schwangerschaft bis ins Wochenbett.</p>
+        <a class="btn" href="#kontakt">zum Termin</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var header = document.getElementById("header");
+      var burger = document.getElementById("burger");
+      var sub = document.querySelector(".has-sub");
+      var subBtn = sub.querySelector("button");
+
+      burger.addEventListener("click", function () {
+        var open = header.classList.toggle("open");
+        burger.setAttribute("aria-expanded", open);
+      });
+      subBtn.addEventListener("click", function () {
+        var open = sub.classList.toggle("open");
+        subBtn.setAttribute("aria-expanded", open);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          sub.classList.remove("open");
+          subBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
